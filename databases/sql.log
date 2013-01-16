@@ -1,0 +1,52 @@
+timestamp: 2013-01-15T21:29:26.501559
+CREATE TABLE blog(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512) NOT NULL UNIQUE,
+    description TEXT
+);
+success!
+timestamp: 2013-01-15T21:29:26.672502
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2013-01-15T21:29:26.829755
+CREATE TABLE post(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    blog INTEGER REFERENCES blog (id) ON DELETE CASCADE,
+    title CHAR(512) NOT NULL,
+    slug CHAR(512),
+    post_body TEXT,
+    post_date TIMESTAMP,
+    is_draft CHAR(1),
+    tags TEXT,
+    category TEXT
+);
+success!
+timestamp: 2013-01-15T21:34:08.469709
+CREATE TABLE blog(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512) NOT NULL UNIQUE,
+    description TEXT
+);
+success!
+timestamp: 2013-01-15T21:34:08.774843
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2013-01-15T21:34:08.967914
+CREATE TABLE post(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    blog INTEGER REFERENCES blog (id) ON DELETE CASCADE,
+    title CHAR(512) NOT NULL,
+    slug CHAR(512),
+    post_body TEXT,
+    post_date TIMESTAMP,
+    is_draft CHAR(1),
+    tags TEXT,
+    category TEXT
+);
+success!
