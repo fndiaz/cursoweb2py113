@@ -1,12 +1,14 @@
 
 Blog = db.define_table("blog",
       Field("title", notnull=True, unique=True),
-      Field("description", "text")
+      Field("description", "text"),
+      auth.signature
 	)
 
 
 Category = db.define_table("category",
-       Field("name")
+       Field("name"),
+       auth.signature
 	)
 
 Post = db.define_table("post",
@@ -17,7 +19,8 @@ Post = db.define_table("post",
       Field("post_date", "datetime"),
       Field("is_draft", "boolean"),
       Field("tags", "list:string"),
-      Field("category", "list:reference category")
+      Field("category", "list:reference category"),
+      auth.signature
 	)
 
 
