@@ -82,7 +82,15 @@ auth.define_tables(username=False)
 
 # generic
 if request.is_local:
-    response.generic_patterns = ['*.html']
+    response.generic_patterns = ['*']
+
+
+# response
+response.title = "Meu site magnifico"
+response.subtitle = "O blog do sheldon"
+response.meta.keywords = "chave, outra, e utra"
+response.meta.description = "blog do shedon"
+
 
 
 

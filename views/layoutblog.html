@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> {{=response.title}}</title>
+  <meta name="description" content="{{=response.meta.description}}">
+  <meta name="keywords" content="{{=response.meta.keyworks}}">
+  <meta name="date" content="2012-01-06">
+
+ {{css = URL(a='blog',c='static', f='css')}}
+ {{js = URL(a='blog',c='static', f='js')}}
+ {{img = URL(a='blog',c='static', f='img')}}
+ {{images = URL(a='blog',c='static', f='images')}}
+ {{video = URL(a='blog',c='static', f='video')}}
+
+  <link rel="stylesheet" href="{{=css}}/master.css" type="text/css" media="screen" charset="utf-8">
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css">
+ <link rel="stylesheet" href="{{=css}}/bootstrap.min.css">
+
+  <script src="{{=js}}/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+
+  <script src="{{=js}}/bootstrap.min.js"></script>
+
+  {{block head}}
+  {{end}}
+
+   {{include 'html_functions/post_template.html'}}
+</head>
+<body>
+
+  
+  <header id="top">
+    {{block header}}
+      <div id="logo">
+        <a href="/">
+           <img src="{{=img}}/logo.png" alt="logo" />
+        </a>
+      </div>
+      <hgroup>
+          <h1>{{=response.title}}</h1>
+          <h2>{{=response.subtitle}}</h2>
+      </hgroup>
+      <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">item menu</a></li>
+            <li><a href="#">item menu</a></li>
+            <li><a href="#">item menu</a></li>
+          </ul>
+      </nav>
+      {{end}}
+  </header>
+
+  <section id="banner">
+    {{block banner}}
+      <img src="{{=img}}/banner.png" alt="banner"/>
+      <!-- <img src="img/banner2.png" alt="banner" /> -->
+    {{end}}
+  </section>
+ 
+
+
+<!-- <section id="banner" class="carousel slide">
+  
+  <div class="carousel-inner">
+    <div class="active item"><img src="img/banner.png" alt="banner"/></div>
+    <div class="item"><img src="img/banner2.png" alt="banner" /></div>
+  </div>
+ 
+  <a class="carousel-control left" href="#banner" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#banner" data-slide="next">&rsaquo;</a>
+</section> -->
+
+
+
+  <aside id="sidebar">
+    {{block sidebar}}
+      <div id="info">
+           <h3>About me</h3>
+           <figure id="photo">
+             <img src="{{=img}}/photo.jpg" alt="photo" />
+             <img src="{{=img}}/photo2.jpg" alt="photo" />
+             <figcaption>Dr Sheldon Cooper</figcaption>
+           </figure>
+           <p><blockquote>Este blog é o melhor blog do universo</blockquote></p>
+      </div>
+      <nav>
+          <ul>
+            <li><a href="#contact">contato</a></li>
+            <li><a href="fotos.html">fotos</a></li>
+            <li><a href="admin.html">admin</a></li>
+          </ul>
+      </nav>
+      <section id="tweets" class="side">
+          <header><h3>Twitter feed @TheRealSheldonC</h3></header>
+
+      </section>
+      {{end}}
+  </aside>
+
+  <script>
+
+  $.getJSON("http://search.twitter.com/search.json?callback=?&q=therealsheldonc&include_entities=true&rpp=5",
+  loadtweets);
+
+  // $.ajax({url: "twitter.json"}).done(loadtweets);
+
+  function loadtweets(data){
+    results = data.results;
+    for (var i in results){
+      tweet = results[i]
+      html = "<article class='well'>"
+      html += "<header><small><a href=''>Postado em <time datetime='"
+      html += tweet.created_at +"'>"+tweet.created_at;
+      html += "</time></a></small></header>"
+      html += "<p>" + tweet.text + "</p>";
+      html += "</article>"
+      $('#tweets').append(html);
+    }
+  }
+
+  
+  $(function(){
+      
+      var imagens = [];
+      $('#photo img').each(function(){
+        imagens.push($(this).attr('src'));
+      });
+      console.log(imagens);
+
+      var counter = imagens.length;
+      
+      newimg = $("<img id='slider' class='img-polaroid'>").attr({'src': imagens[1]});
+
+      $('#photo img').remove();
+      $('#photo').prepend(newimg);
+
+      var slider = $('#slider');
+
+      setInterval(function(){
+          $('#slider').fadeOut("slow", function(){
+             $(this).attr('src', imagens[(imagens.length++) % counter]).fadeIn('slow');
+          });
+
+      }, 3000);
+  
+  });
+
+
+  
+  </script>
+
+
+
+  <div class="postcontainer">
+    {{block posts}}
+    <section id="ciencia" class="post">
+        <header>
+           <h1> Artigos cientificos e experimentos</h1>
+        </header>
+
+        
+        {{for post in posts:}}
+             {{include 'includes/post_template.html'}}
+        {{pass}}
+
+        <!-- 
+        {{for post in posts:}}
+            {{post_template(title=post.title, body=post.post_body)}}
+        {{pass}}
+         -->
+
+    </section>
+
+    <section id="games" class="post">
+        <header>
+           <h1> Games e trens!</h1>
+        </header>
+        <article>
+           <header>
+              <h2>Sheldon Cooper inventa Xadrez para 3 pessoas</h2>
+           </header>
+           <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam inonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+             
+            <video onclick="this.play()"  height="310" width="550" poster="{{=img}}/video.png" controls>
+              <source src="{{=video}}/video13.mp4" type="" media="" />
+              <source src="{{=video}}/video2.mp4" type="" media="" />
+            </video>
+
+
+           </p>
+           <footer>
+              <span>Postado por <b> Sheldon</b> em <time pubdate date="2012-12-22"> 22/12/2012</time>
+           </footer>
+        </article>
+    </section>
+   {{end}}
+  </div>
+
+  <footer>
+    {{block footer}}
+     <form id="contact" method="POST" action="" oninput="idade.value = 28" >
+        <h3>Entre em contato</h3>
+        <label>Nome</label>
+        <input type="text" name="nome" value="" required>
+        <input type="text" name="idade" id="idade" value="" />
+        <input type="file" accept="image/*;capture=camera">
+        <input type="text" class="date">
+        <input type="submit" value="Enviar" />
+     </form>
+
+     <div>
+       Copyright &copy; 2013
+     </div>
+     {{end}}
+  </footer>
+
+<div id="dialog" class="hidden" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+
+</body>
+</html>

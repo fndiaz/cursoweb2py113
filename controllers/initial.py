@@ -1,5 +1,40 @@
+import json
+
 def home():
-    return "Welcome to my blog"
+    posts = db(db.post).select()
+    return dict(posts=posts)
+
+
+
+
+
+    # nome = "Bruno"
+    # curso = "Python"
+    # # if request.vars.use_tmp:
+    # #     response.view = "/tmp/teste.html"
+    # logger.info(request.extension)
+    # logger.info(response.view)
+
+    # response.title += " | Funcao home"
+    # return dict(nome=nome, curso=curso, lista=["1", "2"])
+
+
+
+
+    # executa qualquer codigo Python
+    # quantos menos codigo melhor
+    # lista = [{"nome":"Bruno"}, {"nome":"Hermano"}]
+    # response.headers['Content-Type'] = "text/json"
+    # print response.headers 
+    # return json.dumps(lista)
+    # args = dict(nome="Bruno",
+    #                        curso="Python",
+    #                        lista=["hello", "world"])
+
+
+    # return response.render("/tmp/teste.html",
+    #                        **args)
+
 
 def contact():
     return "form"

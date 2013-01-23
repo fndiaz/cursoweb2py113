@@ -1,0 +1,12 @@
+
+{{def post_template(title, body, *args, **wargs):}}
+<article>
+   <header>
+      <h2>{{=title}}</h2>
+   </header>
+   <p> {{=body}}</p>
+   <footer>
+      <span>Postado por <b> Sheldon</b> em <time pubdate date="2012-12-22"> 22/12/2012</time>
+   </footer>
+</article>
+{{return}}

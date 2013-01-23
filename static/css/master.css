@@ -1,0 +1,223 @@
+/* reset 
+http://meyerweb.com/eric/tools/css/reset/
+*/
+
+* {
+  margin:0;
+  padding:0;
+  list-style:none;
+  vertical-align:baseline;
+  text-decoration:none; 
+ }
+
+/* base elements */
+
+  body {
+       margin: auto !important;
+       width: 850px !important;
+       background: #333 url(../img/bg.png) repeat;
+       color: #CCC;
+       font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+       font-weight: 300;
+       text-shadow: 1px 1px black;
+       font-size: 14px;
+       line-height: 18px;     
+
+     /*trick depois de mostrar sidebar */
+       height:100%;
+     }
+
+/* header */
+
+  header#top {
+    height: 70px;
+    /*background-color: #000000;*/
+    color:white;
+    padding:10px;
+  }
+
+  header#top #logo, header#top hgroup  {
+    float:left;
+  }
+
+  #top #logo a:hover {
+     opacity: 0.2;
+  }
+
+  header#top hgroup {
+    padding:5px 20px;
+    line-height:27px;
+  }
+
+
+  /* depois do banner*/
+  #top nav {
+     clear:both; 
+
+     /*depois de dar problema*/
+     display: table;
+     height:30px;
+
+  }
+
+   #top nav ul {
+     border: 1px solid black;   
+     height: 30px;
+     line-height: 30px; 
+     margin-bottom:10px;
+     
+     padding:0 10px; 
+     position:relative;    
+     top:5px;
+     left:40px;
+     width: 350px;
+     background:#000000;
+     border-radius:10px;
+     overflow:hidden;
+  }
+
+   #top nav ul li {
+     float:left;
+     padding:0 10px;
+     line-height:30px;
+   }
+
+   #top nav ul li a {
+     color: #355d43;
+     line-height:30px;
+   }
+
+   #top nav ul li:hover {
+     color: #C33;
+     background: #355d43;
+   }
+
+   #top nav ul li:hover a {
+      color:white;
+   }
+
+/*banner (anted de fazer o menu)*/
+  #banner {
+    clear:both;
+    border-radius: 20px !important;
+    overflow: hidden;
+    height: 306px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 60px 6px black; 
+  }
+
+
+/* sidebar */
+
+  #sidebar {
+   width:250px;
+   padding:0 10px 0 0;
+   margin:0 10px 0 0;
+   float:left;
+   height:100%;
+  }
+
+ #sidebar ul {
+   margin:5px;
+ }
+
+ #sidebar ul li {
+   line-height:30px;
+   font-size:15px;
+ }
+
+ #sidebar ul li a {
+  text-decoration:none;
+  color: #355d43;
+  font-size:22px;
+  line-height:30px;
+ }
+/* exibir problema do float:left, depois de arrumar o clear do footer: */
+
+/* content */
+
+div.postcontainer {
+  display:table;;
+}
+
+.post {
+ }
+
+.post>header{
+  
+   margin:0 200px 20px 0px;
+   border-bottom:1px solid black;
+   padding-bottom: 5px;
+ }
+
+.post article {
+  margin: 10px 0 10px 0px;
+  background:#b1a6a6;
+  padding:10px;
+  border-radius:5px;
+  text-shadow: none;
+}
+
+.post article header {
+   color: #000;
+}
+
+.post article p {
+  margin:10px 0;
+  color:#444;
+}
+
+.post article footer {
+  color: #0000a6;
+}
+
+/* footer */
+
+body>footer {
+  clear:both;
+  padding:30px;
+  background-color:#000000;
+  display:table;
+  width: 100%;
+}
+
+form {
+   background-color:#b1a6a6;
+   color: #444;
+   padding:20px;
+   width: 300px;
+   border-radius:10px;
+   float:right;
+}
+
+input[type=text], input[type=email] {
+ width:300px;
+ display:block;
+ margin-top:5px;
+}
+
+/*
+
+#banner img{
+  display: none;
+}
+
+#banner img.active{
+  display: inline;
+}*/
+
+/*#banner {
+  z-index: 0;
+}
+
+#top {
+  z-index: 99;
+}*/
+
+.hidden {
+  display: none;
+}
+
+#banner .item {
+  border-radius: 20px;
+}
