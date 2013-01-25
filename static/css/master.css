@@ -145,7 +145,7 @@ div.postcontainer {
 
 .post>header{
   
-   margin:0 200px 20px 0px;
+   margin:0 100px 20px 0px;
    border-bottom:1px solid black;
    padding-bottom: 5px;
  }
@@ -196,6 +196,10 @@ input[type=text], input[type=email] {
  margin-top:5px;
 }
 
+#contact textarea {
+    width:300px;
+}
+
 /*
 
 #banner img{
@@ -220,4 +224,20 @@ input[type=text], input[type=email] {
 
 #banner .item {
   border-radius: 20px;
+}
+
+
+h1 {
+    color: white !important;
+    font-size: 25px !important;
+}
+
+
+h3 {
+    color: white !important;
+    font-size: 18px !important;
+}
+
+figcaption, blockquote {
+    color:white !important;
 }

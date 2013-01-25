@@ -1,7 +1,7 @@
 import json
 
 def home():
-    posts = db(db.post).select()
+    posts = db(Post.is_draft == False).select(orderby=~Post.created_on)
     return dict(posts=posts)
 
 
@@ -37,7 +37,33 @@ def home():
 
 
 def contact():
-    return "form"
+    logger.info("recebido mensagem em contato:" + str(request.vars))
+    if request.env.request_method == "POST":
+        # executo o que eu quiser
+        logger.info(IS_EMAIL()(request.vars.email))
+        if IS_EMAIL()(request.vars.email)[1]:
+            # erro, invalido
+            # ("email@xxx.com", "menasgem de erro")
+            redirect(URL('home')) # HTTP(302)
+        # Valido
+        # ("email@xxx.com", None)
+        hora = request.now.strftime("%d/%m/%Y")
+        message = (
+            "<html>Nova mensagem recebida:<br>"
+            "Nome: %(nome)s<br>"
+            "Email:%(email)s<br>"
+            "Mensagem:%(mensagem)s<br>"
+            "%(hora)s"
+            "</html>"
+            )
+
+        mail.send(
+            to=config.admin.email,
+            subject="Nova mensagem recebida",
+            message=message % dict(hora=hora, **request.vars)
+            )
+
+    return dict(message="Email enviado com sucesso!")
 
 def about():
     return "sobre o autor"

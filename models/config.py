@@ -3,7 +3,8 @@ from gluon.storage import Storage
 config = Storage(
         db=Storage(),
         auth=Storage(),
-        mail=Storage()
+        mail=Storage(),
+        admin=Storage()
         )
 
 is_shell = request.global_settings.cmd_options.shell
@@ -27,7 +28,7 @@ logger.setLevel(logging.DEBUG)
 
 # auth
 
-from gluon.tools import Auth
+from gluon.tools import Auth, prettydate
 
 auth = Auth(db, controller="initial", function="user")
 
@@ -90,6 +91,9 @@ response.title = "Meu site magnifico"
 response.subtitle = "O blog do sheldon"
 response.meta.keywords = "chave, outra, e utra"
 response.meta.description = "blog do shedon"
+
+#admin
+config.admin.email = "admin@site.com"
 
 
 

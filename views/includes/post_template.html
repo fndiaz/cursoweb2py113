@@ -2,8 +2,13 @@
    <header>
       <h2>{{=post.title}}</h2>
    </header>
-   <p> {{=post.post_body}}</p>
+   <p> {{=XML(post.post_body)}}</p>
    <footer>
-      <span>Postado por <b> Sheldon</b> em <time pubdate date="2012-12-22"> 22/12/2012</time>
+      <span>Postado por <b> Sheldon</b> em <time pubdate date="2012-12-22"> 
+
+        {{#=post.created_on.strftime("%d/%m/%Y %H:%M:%S")}}
+         {{=prettydate(post.created_on)}}
+
+      </time>
    </footer>
 </article>

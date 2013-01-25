@@ -1,27 +1,22 @@
 {{extend 'layoutblog.html'}}
 
-{{block sidebar}}
-   
-   <h1> teste </h1>
-
-
-   {{super}}
-{{end}}
-
-
 
 {{block main}}
-    {{=nome}}
+    <section id="ciencia" class="post">
+        <header>
+           <h1> Artigos cientificos e experimentos</h1>
+        </header>
 
+        
+        {{for post in posts:}}
+             {{include 'includes/post_template.html'}}
+        {{pass}}
 
+        <!-- 
+        {{for post in posts:}}
+            {{post_template(title=post.title, body=post.post_body)}}
+        {{pass}}
+         -->
 
-    sdfsdfsdf
-    sd
-    fsd
-    fsd
-    f
-    sdf
-
-    sdfsdf
-
+    </section>
 {{end}}

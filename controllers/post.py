@@ -1,3 +1,5 @@
+from customvalidators import valida
+
 def show():
     return "post"
 
@@ -7,17 +9,15 @@ def edit():
 def delete():
     return "delete"
 
-
-@auth.requires_login()
+# @auth.requires_login()
+# @auth.requires_membership("admin")
+# @auth.requires_membership("editor")
+@auth.requires(auth.has_membership("admin") or auth.has_membership("editor"))
 def add():
-    logger.debug("executando funcao add %s" % request.vars.postid)
-    
-    # try:
-    #     1/0
-    # except Exception as e:
-    #     logger.error(str(e))
+    logger.debug("executando funcao add post")
+    form = SQLFORM(Post)
+    if form.process(onvalidation=valida).accepted:
+        response.flash = "sucesso"
 
-    # if auth.user.is_admin:
-    #     logger.warning("usuario admin acessando paagina em produ")
-
-    return dict(form=SQLFORM(Post).process())
+    response.view = 'manager/default.html'
+    return dict(form=form)
