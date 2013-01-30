@@ -1,0 +1,36 @@
+{{extend "layout.html"}}
+
+<h1> adicione uma postagem </h1>
+
+{{if form.errors:}}
+<div class="alert alert-danger">
+    <h2> erros </h2>
+ <ul>
+   {{for erro in form.errors:}}
+      <li> {{=erro}} </li>
+   {{pass}}
+ </ul>
+</div>
+{{pass}}
+
+{{=form.custom.begin}}
+<div>
+<h2> Dados basicos </h2>
+<label>
+{{=form.custom.label.title}}
+</label>
+{{=form.custom.widget.title}}
+</div>
+
+<hr>
+
+<div>
+<h2> Dados adicionais </h2>
+
+{{=form.custom.label.is_draft}}
+{{=form.custom.widget.is_draft}}
+
+</div>
+
+{{=form.custom.submit}}
+{{=form.custom.end}}

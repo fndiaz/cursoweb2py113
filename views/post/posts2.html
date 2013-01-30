@@ -1,0 +1,18 @@
+{{extend "layout.html"}}
+
+<table>
+    <thead>
+
+    </thead>
+
+    <tbody>
+        {{for row in rows:}}
+           <tr>
+              <td> <a href="" class="btn">{{=row.id}} </a></td>
+               <td> {{=row.title}}</td>
+               <td> {{=prettydate(row.post_date)}}</td>
+           </tr>
+        {{pass}}
+    </tbody>
+
+</table>

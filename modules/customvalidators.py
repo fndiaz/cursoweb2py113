@@ -17,3 +17,4 @@ def valida(form):
     # usuario nao pode usar a palavra bazinga em um post
     if "bazinga" in form.vars.post_body:
         form.errors.post_body = "You cant use the word 'bazinga' in a post"
+        form.errors.title = "erro"
