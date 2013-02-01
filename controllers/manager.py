@@ -43,7 +43,7 @@ def user():
 
 # @auth.requires_membership("admin")
 def posts():
-
+    Post.post_body.widget = ckeditor.widget
     Post.post_date.represent = lambda v, row: prettydate(v)
     Post.category.represent = lambda categories, row: ",".join([db.category[cid].name for cid in categories])
     Post.id.represent = lambda v, row: A(v, _class="btn btn-mini btn-primary", _href=URL('post', 'edit', args=v))
@@ -66,5 +66,14 @@ def posts():
 
 def posts2():
     grid = SQLFORM.smartgrid(db.blog, linked_tables=['post'])
+    response.view = "manager/user.html"
+    return dict(grid=grid)
+
+
+def categories():
+    links = [dict(header='photo',
+               body=lambda row: A( IMG(_src=URL('initial', 'download', args=row.thumbnail)) ))]
+
+    grid = SQLFORM.grid(Category, links=links, links_placement='left')
     response.view = "manager/user.html"
     return dict(grid=grid)

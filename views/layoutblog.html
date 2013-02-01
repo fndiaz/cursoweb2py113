@@ -63,6 +63,9 @@
   </section>
 
   <aside id="sidebar">
+    {{block login}}
+
+    {{end}}
     {{block sidebar}}
       <div id="info">
            <h3>About me</h3>
@@ -82,7 +85,7 @@
       </nav>
       <section id="tweets" class="side">
           <header><h3>Twitter feed @TheRealSheldonC</h3></header>
-
+        {{=LOAD('plugin_tweet', 'index', vars=dict(key="TheRealSheldonC"), ajax=True)}}
       </section>
       {{end}}
   </aside>
@@ -121,24 +124,24 @@
   {{block jsbelow}}
     <script>
 
-  $.getJSON("http://search.twitter.com/search.json?callback=?&q=therealsheldonc&include_entities=true&rpp=2",
-  loadtweets);
+  // $.getJSON("http://search.twitter.com/search.json?callback=?&q=therealsheldonc&include_entities=true&rpp=2",
+  // loadtweets);
 
-  // $.ajax({url: "twitter.json"}).done(loadtweets);
+  // // $.ajax({url: "twitter.json"}).done(loadtweets);
 
-  function loadtweets(data){
-    results = data.results;
-    for (var i in results){
-      tweet = results[i]
-      html = "<article class='well'>"
-      html += "<header><small><a href=''>Postado em <time datetime='"
-      html += tweet.created_at +"'>"+tweet.created_at;
-      html += "</time></a></small></header>"
-      html += "<p>" + tweet.text + "</p>";
-      html += "</article>"
-      $('#tweets').append(html);
-    }
-  }
+  // function loadtweets(data){
+  //   results = data.results;
+  //   for (var i in results){
+  //     tweet = results[i]
+  //     html = "<article class='well'>"
+  //     html += "<header><small><a href=''>Postado em <time datetime='"
+  //     html += tweet.created_at +"'>"+tweet.created_at;
+  //     html += "</time></a></small></header>"
+  //     html += "<p>" + tweet.text + "</p>";
+  //     html += "</article>"
+  //     $('#tweets').append(html);
+  //   }
+  // }
 
   
   $(function(){
@@ -171,5 +174,8 @@
   
   </script>
   {{end}}
+
+{{=response.toolbar()}}
+
 </body>
 </html>

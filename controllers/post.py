@@ -22,6 +22,7 @@ def delete():
 @auth.requires(auth.has_membership("admin") or auth.has_membership("editor"))
 def add():
     logger.debug("executando funcao add post")
+    Post.post_body.widget = ckeditor.widget
     form = SQLFORM(Post)
     if form.process(onvalidation=valida).accepted:
         response.flash = "sucesso"

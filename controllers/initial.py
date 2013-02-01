@@ -1,8 +1,11 @@
 import json
 
 def home():
-    posts = db(Post.is_draft == False).select(orderby=~Post.created_on)
-    return dict(posts=posts)
+    posts = db(Post.is_draft == False).select(
+        orderby=~Post.created_on,
+        cache=(cache.ram, 300)
+    )
+    return dict(posts=posts, loginform=auth.login())
 
 
 
@@ -66,7 +69,26 @@ def contact():
     return dict(message="Email enviado com sucesso!")
 
 def about():
-    return "sobre o autor"
+    import time
+    # t = time.ctime()
+    t = cache.ram('time', time.ctime, time_expire=10) 
+    return str(t)
+
+@cache('templatecache', cache_model=cache.ram, time_expire=10)
+def controllercache():
+    import time
+    import datetime
+    d = {'time': time.ctime(), 'day': datetime.datetime.now()}
+    return d
+
+
+@cache('templatecache', cache_model=cache.ram, time_expire=10)
+def templatecache():
+    import time
+    import datetime
+    d = {'time': time.ctime(), 'day': datetime.datetime.now()}
+    # para colocar o template(view) no cache response.render
+    return response.render(d)
 
 def user():
     if request.args(0) == 'register':

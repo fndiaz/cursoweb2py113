@@ -145,3 +145,28 @@ timestamp: 2013-01-17T22:03:37.324817
 ALTER TABLE post ADD modified_on TIMESTAMP;
 timestamp: 2013-01-17T22:03:37.525533
 ALTER TABLE post ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2013-01-31T20:16:25.456717
+CREATE TABLE plugin_ckeditor_upload(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(255),
+    filename CHAR(255),
+    flength INTEGER,
+    mime_type CHAR(128),
+    upload CHAR(512)
+);
+success!
+timestamp: 2013-01-31T20:50:30.190825
+ALTER TABLE category ADD photo CHAR(512);
+timestamp: 2013-01-31T20:53:37.335548
+ALTER TABLE category ADD thumbnail CHAR(512);
+timestamp: 2013-01-31T21:41:43.160822
+CREATE TABLE web2py_session_blog(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    locked CHAR(1),
+    client_ip CHAR(64),
+    created_datetime TIMESTAMP,
+    modified_datetime TIMESTAMP,
+    unique_key CHAR(64),
+    session_data BLOB
+);
+success!

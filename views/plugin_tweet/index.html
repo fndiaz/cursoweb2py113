@@ -1,0 +1,11 @@
+<ul style="list-style:none">
+{{for i, tweet in enumerate(tweets['results']):}}
+    {{if i < 3:}}
+        <li style="border:2px solid gray;">
+            {{=tweet['from_user']}}<br>
+            {{=IMG(_src=tweet['profile_image_url'])}}
+            {{=tweet['text']}}
+        </li>
+    {{pass}}
+{{pass}}
+</ul>

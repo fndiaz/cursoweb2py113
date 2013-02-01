@@ -1,4 +1,6 @@
 
+from thumb import THUMB
+
 Blog = db.define_table("blog",
       Field("title", notnull=True, unique=True),
       Field("description", "text"),
@@ -8,6 +10,8 @@ Blog = db.define_table("blog",
 
 Category = db.define_table("category",
        Field("name"),
+       Field("photo", "upload"),
+       Field("thumbnail", "upload", compute=lambda row: THUMB(row.photo, (200,200)) ),
        auth.signature
 	)
 

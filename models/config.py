@@ -1,3 +1,14 @@
+# session
+
+# separar pastas
+#session.connect(request, response, separate=True)
+
+# banco de dados
+# dbsession = DAL('sqlite://dbsession.db')
+# session.connect(request, response, dbsession)
+
+session.connect(request, response, cookie_key="banana")
+
 from gluon.storage import Storage
 
 config = Storage(
@@ -19,6 +30,7 @@ config.db.check_reserved = ['all']
 # objetos
 
 db = DAL(**config.db)
+
 
 # logging
 
